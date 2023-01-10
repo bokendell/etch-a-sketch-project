@@ -1,0 +1,1 @@
+This project consists of an etch-a-sketch like application. When the user hovers over and leaves each grid square, that white square will now change to the desired color. This project will show my ability to combine the new js knowledge that ive learned with previous html and css skills. It will also show my ability you different evert listeners and website interactivity.
