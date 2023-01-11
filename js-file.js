@@ -15,22 +15,42 @@ function createGridRow(size) {
     for (let i = 0; i < size; i++){
         let gridSquare = document.createElement('div');
         gridSquare.classList.add('.grid-square');
-        gridSquare.style.width = "20px";
-        gridSquare.style.height = "20px";
-        gridSquare.style.border = "2px solid black";
-        gridSquare.addEventListener('click', function () {
-            gridSquare.style.backgroundColor = "red";
+        addGridSquareStyle(gridSquare);
+        gridSquare.addEventListener('mouseenter', function () {
+            gridSquare.style.backgroundColor = randomRGBValue();
         });
         gridRow.appendChild(gridSquare);
     }
     return gridRow;
 }
 
+function addGridSquareStyle(gridSquare) {
+    gridSquare.style.width = "20px";
+    gridSquare.style.height = "20px";
+    gridSquare.style.border = "2px solid black";
+}
+
+function removeGrid(){
+    let gridSpace = document.querySelector('.grid-space');
+    while (gridSpace.firstChild) {
+        gridSpace.removeChild(gridSpace.firstChild);
+    }
+}
+
+function randomNumberGenerator(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function randomRGBValue() {
+    return "rgb(" + randomNumberGenerator(0, 255) + "," + randomNumberGenerator(0, 255) + "," + randomNumberGenerator(0, 255) + ")";
+}
+
+const btn = document.querySelector('.user-prompt');
+btn.addEventListener('click', function () {
+    let newGridSize = prompt("How many squares per side?");
+    removeGrid();
+    createDivGrid(newGridSize);
+});
 
 const gridSpace = document.querySelector('.grid-space');
-
-
 createDivGrid(16);
-
-const gridSquares = document.querySelectorAll('.grid-square');
-
