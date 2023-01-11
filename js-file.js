@@ -47,7 +47,18 @@ function randomRGBValue() {
 
 const btn = document.querySelector('.user-prompt');
 btn.addEventListener('click', function () {
-    let newGridSize = prompt("How many squares per side?");
+    let newGridSize = prompt("How many squares per side? (max 100)");
+    while (newGridSize > 100 || newGridSize <= 0) {
+        if (newGridSize > 100) {
+            alert("You entered above the max size");
+            newGridSize = prompt("How many squares per side? (max 100)")
+        }
+
+        if (newGridSize <= 0) {
+            alert("You entered below the min size");
+            newGridSize = prompt("How many squares per side? (max 100)")
+        }
+    }
     removeGrid();
     createDivGrid(newGridSize);
 });
